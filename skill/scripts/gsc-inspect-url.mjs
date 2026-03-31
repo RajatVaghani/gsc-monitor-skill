@@ -16,7 +16,7 @@
  */
 
 import {
-  loadCredentials, getAccessToken, apiRequest,
+  loadCredentials, getAccessToken, apiRequest, GSC_V1_BASE,
   getPositional, outputJson, exitError,
 } from './gsc-common.mjs';
 
@@ -38,7 +38,7 @@ async function main() {
   const result = await apiRequest(token, 'POST', '/urlInspection/index:inspect', {
     inspectionUrl: pageUrl,
     siteUrl,
-  });
+  }, GSC_V1_BASE);
 
   const ir = result.inspectionResult || {};
   const indexStatus = ir.indexStatusResult || {};

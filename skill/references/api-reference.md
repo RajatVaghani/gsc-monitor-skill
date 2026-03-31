@@ -1,6 +1,9 @@
-# Google Search Console API v1 Reference
+# Google Search Console API Reference
 
-Base URL: `https://searchconsole.googleapis.com/v1`
+Two base URLs are used — different endpoints live under different paths:
+
+- **Sites, Search Analytics, Sitemaps**: `https://searchconsole.googleapis.com/webmasters/v3`
+- **URL Inspection**: `https://searchconsole.googleapis.com/v1`
 
 Authentication: Bearer token from Google OAuth2 service account flow.
 
@@ -11,7 +14,7 @@ Authentication: Bearer token from Google OAuth2 service account flow.
 ### List Sites
 
 ```
-GET /sites
+GET https://searchconsole.googleapis.com/webmasters/v3/sites
 ```
 
 Returns all Search Console properties the authenticated account has access to.
@@ -43,7 +46,7 @@ Returns all Search Console properties the authenticated account has access to.
 ### Query Search Analytics
 
 ```
-POST /sites/{siteUrl}/searchAnalytics/query
+POST https://searchconsole.googleapis.com/webmasters/v3/sites/{siteUrl}/searchAnalytics/query
 ```
 
 The `{siteUrl}` must be URL-encoded (e.g., `https%3A%2F%2Fexample.com%2F`).
@@ -138,7 +141,7 @@ Operators: `equals`, `contains`, `notEquals`, `notContains`, `includingRegex`, `
 ### Inspect URL
 
 ```
-POST /urlInspection/index:inspect
+POST https://searchconsole.googleapis.com/v1/urlInspection/index:inspect
 ```
 
 **Request body:**
@@ -207,7 +210,7 @@ POST /urlInspection/index:inspect
 ### List Sitemaps
 
 ```
-GET /sites/{siteUrl}/sitemaps
+GET https://searchconsole.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps
 ```
 
 **Response:**

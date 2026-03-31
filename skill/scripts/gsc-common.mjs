@@ -14,7 +14,8 @@ import https from 'https';
 const DEFAULT_CONFIG_DIR = '/data/.openclaw/shared-files/gsc-monitor';
 const GSC_SCOPE = 'https://www.googleapis.com/auth/webmasters.readonly';
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
-const GSC_API_BASE = 'https://searchconsole.googleapis.com/v1';
+const GSC_API_BASE = 'https://searchconsole.googleapis.com/webmasters/v3';
+export const GSC_V1_BASE = 'https://searchconsole.googleapis.com/v1';
 
 // ── Credential Loading ───────────────────────────────────────────────
 
@@ -180,10 +181,11 @@ export async function getAccessToken(credentials) {
 // ── API Requests ─────────────────────────────────────────────────────
 
 /**
- * Make an authenticated request to the Google Search Console API v1.
+ * Make an authenticated request to the Google Search Console API.
+ * Uses webmasters/v3 base by default. Pass a custom base for v1 endpoints.
  */
-export async function apiRequest(token, method, endpoint, body) {
-  const url = `${GSC_API_BASE}${endpoint}`;
+export async function apiRequest(token, method, endpoint, body, base) {
+  const url = `${base || GSC_API_BASE}${endpoint}`;
   const headers = {
     'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json',
